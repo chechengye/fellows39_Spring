@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd ">
+    <!--
+        注入：
+        1、set方法注入，若没有为属性提供set方法就不可以进行注入
+        name : 属性值，但是此属性值必须拥有set公有方法
+        value ： 8大基本数据类型的值
+        ref ： 赋予引用类型的值
+    -->
+    <bean name="user" class="com.weichuang.pojo.User">
+        <property name="name" value="wangwu"></property>
+        <property name="age" value="18"></property>
+        <property name="car" ref="car"></property>
+    </bean>
+    <!--带参构造方法注入
+        name ： 构造方法的形参
+        value: 8大基本数据类型的值
+        ref ：引用类型对象
+        index : 标识形参属性在构造方法中的位置 ，从0开始
+        type: 标识形参属性在构造方法中的数据类型
+    -->
+    <bean name="car" class="com.weichuang.pojo.Car">
+        <constructor-arg name="name" value="路虎" ></constructor-arg>
+        <constructor-arg name="color" value="白色"></constructor-arg>
+    </bean>
+
+    <bean name="user1" class="com.weichuang.pojo.User">
+        <constructor-arg name="name" value="tianqi"></constructor-arg>
+        <constructor-arg name="age" value="22"></constructor-arg>
+        <constructor-arg name="car" ref="car"></constructor-arg>
+    </bean>
+
+   <!-- <bean name="user2" class="com.weichuang.pojo.User">
+        <constructor-arg name="name" value="huba" index="0"></constructor-arg>
+        <constructor-arg name="age" value="35"></constructor-arg>
+    </bean>-->
+
+    <bean name="user3" class="com.weichuang.pojo.User">
+        <constructor-arg name="name" value="124" type="java.lang.String" index="0"></constructor-arg>
+        <constructor-arg name="age" value="35"></constructor-arg>
+    </bean>
+
+    <!--表达式注入SPEL #{}-->
+    <bean name="user4" class="com.weichuang.pojo.User">
+        <property name="name" value="#{user.name}"></property>
+        <property name="age" value="#{user.age}"></property>
+        <!--<property name="car" value="#{user.car}"></property>-->
+        <property name="car" ref="car"></property>
+    </bean>
+    <!--复杂类型的注入-->
+    <bean name="collectionDemo" class="com.weichuang.utils.CollectionDemo">
+        <property name="arr">
+            <array>
+                <value>王五</value>
+                <value>22</value>
+                <ref bean="user"></ref>
+            </array>
+        </property>
+        <property name="list">
+            <list>
+                <value>赵六</value>
+                <value>34</value>
+                <ref bean="user"></ref>
+            </list>
+        </property>
+        <property name="map">
+            <map>
+                <entry key="key1" value="value1"></entry>
+                <entry key="key2" value-ref="car"></entry>
+                <entry key-ref="user" value-ref="car"></entry>
+            </map>
+        </property>
+        <property name="properties">
+            <props>
+                <prop key="jdbc.username">root</prop>
+                <prop key="jdbc.password">root</prop>
+            </props>
+        </property>
+    </bean>
+</beans>

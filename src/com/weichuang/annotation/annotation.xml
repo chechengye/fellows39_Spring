@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <!--扫描，base-package属性配置的包名下面的所有类支持注解功能 ，否则不支持-->
+    <context:component-scan base-package="com.weichuang"></context:component-scan>
+  <bean name="car1" class="com.weichuang.pojo.Car">
+        <property name="name" value="法拉利"></property>
+        <property name="color" value="红色"></property>
+    </bean>
+
+</beans>

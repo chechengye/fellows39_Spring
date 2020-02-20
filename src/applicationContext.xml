@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd ">
+    <!--
+        name: 名称任意，在一个bean中可以重复的，可以使用特殊字符。不建议使用重复的方式命名，不需要遵循xml命名规范
+        id : 名称任意，不可以重复，唯一，需要遵循xml命名规范。建议使用name。
+        scope: 表示一个域，默认是单例模式singleton ，若配置为prototype多例，struts2
+        init-method : 初始化方法，了解
+        destroy-method : 销毁方法，需要配置文件对象主动调用close唤起，了解
+        class ： 类的全路径，否则找不到
+        配置多少个bean就实例化多少对象,配置的上下文中或者多个bean之间只能存在一个不重复的名称，不区别于id还是name
+
+        Spring容器创建对象的三种方式
+        1、通过无参的构造方法创建-重点
+        2、通过静态方法创建
+    -->
+    <bean name="a1,a1,a3"   class="com.weichuang.pojo.User"></bean>
+    <bean name="user"  class="com.weichuang.pojo.User"></bean>
+    <!--<bean id="user"  class="com.weichuang.pojo.User"></bean>-->
+    <bean id="user1"  class="com.weichuang.pojo.User"></bean>
+    <bean id="b1"  class="com.weichuang.pojo.User"></bean>
+    <!--静态方法创建 - 由于同样使用new 不推荐-->
+    <bean name="user2" class="com.weichuang.utils.UserFactory" factory-method="createUser"></bean>
+    <!--实例方法创建 - 由于同样使用new 不推荐 -->
+    <bean name= "userFactory" class="com.weichuang.utils.UserFactory"></bean>
+    <bean name="user3" factory-bean="userFactory" factory-method="createUser2"></bean>
+</beans>
