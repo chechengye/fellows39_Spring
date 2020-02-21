@@ -31,5 +31,8 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="spring-aop-4.3.9.RELEASE" level="project" />
+    <orderEntry type="library" name="spring-test-4.3.9.RELEASE" level="project" />
+    <orderEntry type="library" name="com.springsource.org.aopalliance-1.0.0" level="project" />
+    <orderEntry type="library" name="c3p0-0.9.1.2" level="project" />
   </component>
 </module>

@@ -4,11 +4,14 @@ import com.weichuang.pojo.Car;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
 
 /**
@@ -19,6 +22,7 @@ import javax.annotation.Resource;
  * @Repository : 作用于dao层或mapper层
  */
 @Component(value = "person1")
+//@Scope(value = "prototype")
 public class Person {
     //属性注入，通过反射机制，破坏了封装性
     //@Value("张三")
@@ -62,6 +66,14 @@ public class Person {
     public void setCar(Car car) {
         this.car = car;
     }
+    /*@PostConstruct
+    public void init(){
+        System.out.println("初始化方法!");
+    }
+    @PreDestroy
+    public void destory(){
+        System.out.println("销毁方法!");
+    }*/
 
     @Override
     public String toString() {
